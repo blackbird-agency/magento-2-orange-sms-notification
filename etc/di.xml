@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Blackbird Orange SMS Notification Module
+ *
+ * NOTICE OF LICENSE
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@bird.eu so we can send you a copy immediately.
+ *
+ * @category    Blackbird
+ * @package     Blackbird_OrangeSmsNotification
+ * @copyright   Copyright (c) 2018 Blackbird (https://black.bird.eu)
+ * @author      Blackbird Team
+ * @license     https://store.bird.eu/license/
+ * @support     help@bird.eu
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Blackbird\SmsNotification\Model\Notification\AdapterPool">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="orange_sms" xsi:type="object">Blackbird\OrangeSmsNotification\Service\OrangeSmsAdapter</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

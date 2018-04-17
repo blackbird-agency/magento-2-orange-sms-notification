@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Blackbird Orange SMS Notification Module
+ *
+ * NOTICE OF LICENSE
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to contact@bird.eu so we can send you a copy immediately.
+ *
+ * @category    Blackbird
+ * @package     Blackbird_OrangeSmsNotification
+ * @copyright   Copyright (c) 2018 Blackbird (https://black.bird.eu)
+ * @author      Blackbird Team
+ * @license     https://store.bird.eu/license/
+ * @support     help@bird.eu
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="orange_sms">
+            <group id="general">
+                <field id="enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Orange SMS</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <requires>
+                        <field id="orange_sms/general/client_id" />
+                        <field id="orange_sms/general/client_secret" />
+                    </requires>
+                    <config_path>orange_sms/general/enabled</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
