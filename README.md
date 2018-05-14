@@ -1,6 +1,6 @@
 # Orange Sms Notification
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/blackbird/orange-sms-notification.svg?style=flat-square)](https://packagist.org/packages/blackbird/orange-sms-notification)
+[![Latest Stable Version](https://img.shields.io/packagist/v/blackbird/module-orange-sms-notification.svg?style=flat-square)](https://packagist.org/packages/blackbird/module-orange-sms-notification)
 [![License: MIT](https://img.shields.io/github/license/blackbird-agency/magento-2-orange-sms-notification.svg?style=flat-square)](./LICENSE)  
 
 This module is a free connector for the SmsNotification and the OrangeSms modules.  
@@ -13,7 +13,7 @@ These modules are available on our [store](https://store.bird.eu/).
 The module is available on packagist, so you can install the module through composer:
 
 ```
-composer require blackbird/orange-sms-notification
+composer require blackbird/module-orange-sms-notification
 ```
 
 Then, run the following magento command:

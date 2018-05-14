@@ -1,5 +1,5 @@
 {
-    "name": "blackbird/orange-sms-notification",
+    "name": "blackbird/module-orange-sms-notification",
     "description": "Orange Sms connector to the Sms Notificaiton module adapters.",
     "keywords": [
         "php",
@@ -33,11 +33,11 @@
         "magento/framework": ">=100.0",
         "magento/module-backend": ">=100.0",
         "magento/module-config": ">=100.0",
-        "blackbird/sms-notification": ">=0.1.0",
-        "blackbird/orange-sms": ">=0.1.0"
+        "blackbird/module-sms-notification": ">=0.1.0",
+        "blackbird/module-orange-sms": ">=0.2.0"
     },
     "type": "magento2-module",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
     "autoload": {
         "files": [
