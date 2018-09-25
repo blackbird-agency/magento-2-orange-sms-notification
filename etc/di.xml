@@ -20,7 +20,7 @@
     <type name="Blackbird\SmsNotification\Model\Notification\AdapterPool">
         <arguments>
             <argument name="adapters" xsi:type="array">
-                <item name="orange_sms" xsi:type="object">Blackbird\OrangeSmsNotification\Service\OrangeSmsAdapter</item>
+                <item name="orange_sms" xsi:type="object">Blackbird\OrangeSmsNotification\Service\OrangeSmsAdapter\Proxy</item>
             </argument>
         </arguments>
     </type>
