@@ -29,15 +29,14 @@
         "issues": "https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues"
     },
     "require": {
-        "magento/magento-composer-installer": "*",
         "magento/framework": ">=100.0",
         "magento/module-backend": ">=100.0",
         "magento/module-config": ">=100.0",
-        "blackbird/module-sms-notification": ">=0.1.0",
-        "blackbird/module-orange-sms": ">=0.2.0"
+        "blackbird/module-sms-notification": "^0.2.0",
+        "blackbird/module-orange-sms": "^0.2.0"
     },
     "type": "magento2-module",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "license": "MIT",
     "autoload": {
         "files": [

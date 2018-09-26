@@ -17,10 +17,10 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <type name="Blackbird\SmsNotification\Model\Notification\AdapterPool">
+    <type name="Blackbird\SmsNotification\Model\Notification\Adapter\AdapterPool">
         <arguments>
             <argument name="adapters" xsi:type="array">
-                <item name="orange_sms" xsi:type="object">Blackbird\OrangeSmsNotification\Service\OrangeSmsAdapter\Proxy</item>
+                <item name="orange_sms" xsi:type="object">Blackbird\OrangeSmsNotification\Service\OrangeSmsAdapter</item>
             </argument>
         </arguments>
     </type>

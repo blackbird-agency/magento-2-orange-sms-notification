@@ -22,7 +22,7 @@ use Blackbird\OrangeSms\Api\Data\SmsInterfaceFactory;
 use Blackbird\OrangeSms\Api\SmsManagementInterface;
 use Blackbird\OrangeSms\Exception\OrangeSmsSendException;
 use Blackbird\SmsNotification\Exception\SendNotificationException;
-use Blackbird\SmsNotification\Model\Notification\AdapterInterface;
+use Blackbird\SmsNotification\Model\Notification\Adapter\AdapterInterface;
 use Blackbird\SmsNotification\Model\Notification\MessageInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Phrase;

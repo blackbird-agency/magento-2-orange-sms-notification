@@ -20,7 +20,7 @@
     <module name="Blackbird_OrangeSmsNotification" setup_version="0.1.0">
         <sequence>
             <module name="Magento_Backend" />
-            <module name="Magento_Config" />
+            <module name="Magento_Config" />"
             <module name="Blackbird_OrangeSms" />
             <module name="Blackbird_SmsNotification" />
         </sequence>
