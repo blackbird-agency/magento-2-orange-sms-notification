@@ -10,17 +10,28 @@ These modules are available on our [store](https://store.bird.eu/).
 
 ## Setup
 
-The module is available on packagist, so you can install the module through composer:
+### Get the package
+
+**Zip Package:** *(not recommended)*
+
+Unzip the package in app/code/Blackbird/OrangeSmsNotification, from the root of your Magento instance.
+
+**Composer Package:** *(recommended)*
 
 ```
 composer require blackbird/module-orange-sms-notification
 ```
 
-Then, run the following magento command:
+### Install the module
+
+Go to your Magento root, then run the following magento command:
 
 ```
 php bin/magento setup:upgrade
 ```
+
+**If you are in production mode, do not forget to recompile and redeploy the static resources, or to use the `--keep-generated` option.**
+
 
 **If you are in production mode, do not forget to recompile and redeploy the static resources.**
 
@@ -37,6 +48,13 @@ Select `Orange Sms` and apply the changes. Now, your notification are sent throu
 - If you have any issue with this code, feel free to [open an issue](https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues/new).  
 - If you wan to contribute to this project, feel free to [create a pull request](https://github.com/blackbird-agency/magento-2-orange-sms-notification/compare).
 
+## Contact
+
+For further information, contact us:
+
+- by email: hello@bird.eu
+- or by form: [https://black.bird.eu/en/contacts/](https://black.bird.eu/contacts/)
+
 ## Authors
 
 - **Thomas Klein** - *Initial work* - [It's me!](https://github.com/thomas-blackbird)
@@ -47,4 +65,3 @@ Select `Orange Sms` and apply the changes. Now, your notification are sent throu
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ***That's all folks!***
-

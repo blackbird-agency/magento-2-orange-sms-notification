@@ -20,7 +20,7 @@
     <system>
         <section id="orange_sms">
             <group id="general">
-                <field id="enabled" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="enabled" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="0" sortOrder="5" >
                     <label>Enable Orange SMS</label>
                     <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
                     <requires>

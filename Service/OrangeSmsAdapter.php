@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace Blackbird\OrangeSmsNotification\Service;
 
-use Blackbird\OrangeSms\Api\Data\SmsInterfaceFactory;
+use Blackbird\OrangeSms\Api\SmsBuilderInterface;
 use Blackbird\OrangeSms\Api\SmsManagementInterface;
 use Blackbird\OrangeSms\Exception\OrangeSmsSendException;
 use Blackbird\SmsNotification\Exception\SendNotificationException;
@@ -42,9 +42,9 @@ class OrangeSmsAdapter implements AdapterInterface
     /**#@-*/
 
     /**
-     * @var \Blackbird\OrangeSms\Api\Data\SmsInterfaceFactory
+     * @var \Blackbird\OrangeSms\Api\SmsBuilderInterface
      */
-    private $smsFactory;
+    private $smsBuilder;
 
     /**
      * @var \Blackbird\OrangeSms\Api\SmsManagementInterface
@@ -58,15 +58,15 @@ class OrangeSmsAdapter implements AdapterInterface
 
     /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Blackbird\OrangeSms\Api\Data\SmsInterfaceFactory $smsFactory
-     * @param \Blackbird\OrangeSms\Api\SmsManagementInterface $smsManagement
+     * @param \Blackbird\OrangeSms\Api\SmsBuilderInterface
+     * @param \Blackbird\OrangeSms\Api\SmsManagementInterface
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        SmsInterfaceFactory $smsFactory,
+        SmsBuilderInterface $smsBuilder,
         SmsManagementInterface $smsManagement
     ) {
-        $this->smsFactory = $smsFactory;
+        $this->smsBuilder = $smsBuilder;
         $this->smsManagement = $smsManagement;
         $this->scopeConfig = $scopeConfig;
     }
@@ -100,11 +100,11 @@ class OrangeSmsAdapter implements AdapterInterface
      */
     public function sendMessage(MessageInterface $message): bool
     {
+        $this->smsBuilder->setTo($message->getTo());
+        $this->smsBuilder->setFrom($message->getFrom());
+        $this->smsBuilder->setMessage($message->getText());
         /** @var \Blackbird\OrangeSms\Api\Data\SmsInterface $sms */
-        $sms = $this->smsFactory->create();
-        $sms->setTo($message->getTo());
-        $sms->setFrom($message->getFrom());
-        $sms->setMessage($message->getText());
+        $sms = $this->smsBuilder->create();
 
         try {
             $this->smsManagement->send($sms);
