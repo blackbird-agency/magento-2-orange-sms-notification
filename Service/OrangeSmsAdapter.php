@@ -30,15 +30,16 @@ use Magento\Store\Model\ScopeInterface;
 
 /**
  * Class OrangeSmsAdapter, connector to SmsNotification adapters
+ * @api
  */
 class OrangeSmsAdapter implements AdapterInterface
 {
-    const CODE = 'orange_sms';
+    public const CODE = 'orange_sms';
 
     /**#@+
      * Orange Sms Notifications General Config Paths
      */
-    const XML_PATH_ORANGE_SMS_ENABLED = 'orange_sms/general/enabled';
+    public const CONFIG_PATH_ORANGE_SMS_ENABLED = 'orange_sms/general/enabled';
     /**#@-*/
 
     /**
@@ -92,7 +93,7 @@ class OrangeSmsAdapter implements AdapterInterface
      */
     public function isEnabled(): bool
     {
-        return $this->scopeConfig->isSetFlag(self::XML_PATH_ORANGE_SMS_ENABLED, ScopeInterface::SCOPE_STORE);
+        return $this->scopeConfig->isSetFlag(self::CONFIG_PATH_ORANGE_SMS_ENABLED, ScopeInterface::SCOPE_STORE);
     }
 
     /**
