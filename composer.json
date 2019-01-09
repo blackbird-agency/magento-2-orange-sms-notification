@@ -13,7 +13,7 @@
         "magento/framework": ">=100.0",
         "magento/module-backend": ">=100.0",
         "magento/module-config": ">=100.0",
-        "blackbird/module-sms-notification": ">=0.4.0",
+        "blackbird/module-sms-notification": ">=0.3.0",
         "blackbird/module-orange-sms": ">=0.5.1",
         "blackbird/library-phone-number": ">=0.1.0"
     },
@@ -21,7 +21,7 @@
         "roave/security-advisories": "dev-master"
     },
     "type": "magento2-module",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "license": [
         "MIT"
     ],
