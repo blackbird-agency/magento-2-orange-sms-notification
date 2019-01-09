@@ -9,7 +9,7 @@
  *
  * @category    Blackbird
  * @package     Blackbird_OrangeSmsNotification
- * @copyright   Copyright (c) 2018 Blackbird (https://black.bird.eu)
+ * @copyright   Copyright (c) 2019 Blackbird (https://black.bird.eu)
  * @author      Blackbird Team
  * @license     https://store.bird.eu/license/
  * @support     help@bird.eu

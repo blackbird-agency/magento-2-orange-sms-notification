@@ -9,7 +9,7 @@
  *
  * @category    Blackbird
  * @package     Blackbird_OrangeSmsNotification
- * @copyright   Copyright (c) 2018 Blackbird (https://black.bird.eu)
+ * @copyright   Copyright (c) 2019 Blackbird (https://black.bird.eu)
  * @author      Blackbird Team
  * @license     https://store.bird.eu/license/
  * @support     help@bird.eu
@@ -21,6 +21,7 @@ namespace Blackbird\OrangeSmsNotification\Service;
 use Blackbird\OrangeSms\Api\SmsBuilderInterface;
 use Blackbird\OrangeSms\Api\SmsManagementInterface;
 use Blackbird\OrangeSms\Exception\OrangeSmsSendException;
+use Blackbird\PhoneNumberLib\Parser\PhoneNumberParser;
 use Blackbird\SmsNotification\Exception\SendNotificationException;
 use Blackbird\SmsNotification\Model\Notification\Adapter\AdapterInterface;
 use Blackbird\SmsNotification\Model\Notification\MessageInterface;
@@ -58,18 +59,26 @@ class OrangeSmsAdapter implements AdapterInterface
     private $scopeConfig;
 
     /**
+     * @var \Blackbird\PhoneNumberLib\Parser\PhoneNumberParser
+     */
+    private $phoneNumberParser;
+
+    /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Blackbird\OrangeSms\Api\SmsBuilderInterface
-     * @param \Blackbird\OrangeSms\Api\SmsManagementInterface
+     * @param \Blackbird\OrangeSms\Api\SmsBuilderInterface $smsBuilder
+     * @param \Blackbird\OrangeSms\Api\SmsManagementInterface $smsManagement
+     * @param \Blackbird\PhoneNumberLib\Parser\PhoneNumberParser $phoneNumberParser
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         SmsBuilderInterface $smsBuilder,
-        SmsManagementInterface $smsManagement
+        SmsManagementInterface $smsManagement,
+        PhoneNumberParser $phoneNumberParser
     ) {
         $this->smsBuilder = $smsBuilder;
         $this->smsManagement = $smsManagement;
         $this->scopeConfig = $scopeConfig;
+        $this->phoneNumberParser = $phoneNumberParser;
     }
 
     /**
@@ -101,8 +110,8 @@ class OrangeSmsAdapter implements AdapterInterface
      */
     public function sendMessage(MessageInterface $message): bool
     {
-        $this->smsBuilder->setTo($message->getTo());
-        $this->smsBuilder->setFrom($message->getFrom());
+        $this->smsBuilder->setTo($this->phoneNumberParser->parse($message->getTo()));
+        $this->smsBuilder->setFrom($this->phoneNumberParser->parse($message->getFrom()));
         $this->smsBuilder->setMessage($message->getText());
         /** @var \Blackbird\OrangeSms\Api\Data\SmsInterface $sms */
         $sms = $this->smsBuilder->create();
