@@ -9,10 +9,10 @@
  *
  * @category    Blackbird
  * @package     Blackbird_OrangeSmsNotification
- * @copyright   Copyright (c) 2019 Blackbird (https://black.bird.eu)
+ * @copyright   Copyright (c) Blackbird (https://black.bird.eu)
  * @author      Blackbird Team
- * @license     https://store.bird.eu/license/
- * @support     help@bird.eu
+ * @license     MIT
+ * @support     https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues
  */
 declare(strict_types=1);
 
