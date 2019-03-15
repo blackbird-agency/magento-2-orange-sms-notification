@@ -20,9 +20,7 @@ namespace Blackbird\OrangeSmsNotification\Service;
 
 use Blackbird\OrangeSms\Api\SmsBuilderInterface;
 use Blackbird\OrangeSms\Api\SmsManagementInterface;
-use Blackbird\OrangeSms\Exception\OrangeSmsSendException;
 use Blackbird\PhoneNumberLib\Parser\PhoneNumberParser;
-use Blackbird\SmsNotification\Exception\SendNotificationException;
 use Blackbird\SmsNotification\Model\Notification\Adapter\AdapterInterface;
 use Blackbird\SmsNotification\Model\Notification\MessageInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -37,7 +35,7 @@ use Magento\Store\Model\ScopeInterface;
 class OrangeSmsAdapter implements AdapterInterface
 {
     public const CODE = 'orange_sms';
-    public const MAX_LENGTH = 400;
+    public const MAX_LENGTH = 399;
 
     /**#@+
      * Orange Sms Notifications General Config Paths
@@ -128,7 +126,7 @@ class OrangeSmsAdapter implements AdapterInterface
 
         try {
             $this->smsManagement->send(\substr($sms, 0, self::MAX_LENGTH)); //Ensure maximum size is not reached
-        } catch (OrangeSmsSendException $e) {
+        } catch (\Exception $e) {
             $this->logger->error($e->getMessage(), $e->getTrace());
         }
 
