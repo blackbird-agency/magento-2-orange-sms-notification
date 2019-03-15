@@ -27,6 +27,7 @@ use Blackbird\SmsNotification\Model\Notification\Adapter\AdapterInterface;
 use Blackbird\SmsNotification\Model\Notification\MessageInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Phrase;
+use Psr\Log\LoggerInterface;
 use Magento\Store\Model\ScopeInterface;
 
 /**
@@ -36,6 +37,7 @@ use Magento\Store\Model\ScopeInterface;
 class OrangeSmsAdapter implements AdapterInterface
 {
     public const CODE = 'orange_sms';
+    public const MAX_LENGTH = 400;
 
     /**#@+
      * Orange Sms Notifications General Config Paths
@@ -64,21 +66,29 @@ class OrangeSmsAdapter implements AdapterInterface
     private $phoneNumberParser;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Blackbird\OrangeSms\Api\SmsBuilderInterface $smsBuilder
      * @param \Blackbird\OrangeSms\Api\SmsManagementInterface $smsManagement
      * @param \Blackbird\PhoneNumberLib\Parser\PhoneNumberParser $phoneNumberParser
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         SmsBuilderInterface $smsBuilder,
         SmsManagementInterface $smsManagement,
-        PhoneNumberParser $phoneNumberParser
+        PhoneNumberParser $phoneNumberParser,
+        LoggerInterface $logger
     ) {
         $this->smsBuilder = $smsBuilder;
         $this->smsManagement = $smsManagement;
         $this->scopeConfig = $scopeConfig;
         $this->phoneNumberParser = $phoneNumberParser;
+        $this->logger = $logger;
     }
 
     /**
@@ -117,9 +127,9 @@ class OrangeSmsAdapter implements AdapterInterface
         $sms = $this->smsBuilder->create();
 
         try {
-            $this->smsManagement->send($sms);
+            $this->smsManagement->send(\substr($sms, 0, self::MAX_LENGTH)); //Ensure maximum size is not reached
         } catch (OrangeSmsSendException $e) {
-            throw new SendNotificationException(new Phrase('Impossible to send the message.'), $e);
+            $this->logger->error($e->getMessage(), $e->getTrace());
         }
 
         return true;
