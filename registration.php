@@ -12,7 +12,7 @@
  * @copyright   Copyright (c) Blackbird (https://black.bird.eu)
  * @author      Blackbird Team
  * @license     MIT
- * @support     https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues
+ * @support     https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues/new
  */
 
 \Magento\Framework\Component\ComponentRegistrar::register(

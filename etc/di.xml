@@ -13,7 +13,7 @@
  * @copyright   Copyright (c) Blackbird (https://black.bird.eu)
  * @author      Blackbird Team
  * @license     MIT
- * @support     https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues
+ * @support     https://github.com/blackbird-agency/magento-2-orange-sms-notification/issues/new
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
