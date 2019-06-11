@@ -29,6 +29,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Phrase;
 use Magento\Store\Model\ScopeInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class OrangeSmsAdapter, connector to SmsNotification adapters
@@ -65,21 +66,29 @@ final class OrangeSmsAdapter implements AdapterInterface
     private $phoneNumberParser;
 
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+
+    /**
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      * @param \Blackbird\OrangeSms\Api\SmsBuilderInterface $smsBuilder
      * @param \Blackbird\OrangeSms\Api\SmsManagementInterface $smsManagement
      * @param \Blackbird\PhoneNumberLib\Parser\PhoneNumberParser $phoneNumberParser
+     * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         SmsBuilderInterface $smsBuilder,
         SmsManagementInterface $smsManagement,
-        PhoneNumberParser $phoneNumberParser
+        PhoneNumberParser $phoneNumberParser,
+        LoggerInterface $logger
     ) {
         $this->smsBuilder = $smsBuilder;
         $this->smsManagement = $smsManagement;
         $this->scopeConfig = $scopeConfig;
         $this->phoneNumberParser = $phoneNumberParser;
+        $this->logger = $logger;
     }
 
     /**
@@ -119,10 +128,10 @@ final class OrangeSmsAdapter implements AdapterInterface
             $sms = $this->smsBuilder->create();
 
             return $this->smsManagement->send($sms);
-        } catch (OrangeSmsSendException $e) {
-            throw new SendNotificationException(new Phrase('Could not send the message: %1', [$e->getMessage()]));
-        } catch (InputException $e) {
-            throw new SendNotificationException(new Phrase('Invalid SMS format: %1', [$e->getMessage()]));
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage(), $e->getTrace());
         }
+
+        return false;
     }
 }
